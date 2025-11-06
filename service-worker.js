@@ -10,6 +10,12 @@ const urlsToCache = [
   "/manifest.json",
   "/assets/images/background.png",
   "/assets/images/logo.png",
+  "/assets/images/favicon.ico",
+  "/assets/images/favicon.svg",
+  "/assets/images/favicon-96x96.png",
+  "/assets/images/apple-touch-icon.png",
+  "/assets/images/web-app-manifest-192x192.png",
+  "/assets/images/web-app-manifest-512x512.png",
   "https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=UnifrakturMaguntia&display=swap",
 ];
 

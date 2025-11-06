@@ -1,0 +1,758 @@
+{
+  "info": {
+    "name": "Eldritchify API v2.0.0",
+    "description": "Complete API collection for testing Eldritchify text corruption and purification endpoints. Includes all parameters, presets, and error handling tests.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "eldritchify-api-v2",
+    "version": "2.0.0"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "item": [
+        {
+          "name": "API Health Status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has operational status\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(\"operational\");",
+                  "});",
+                  "",
+                  "pm.test(\"Version is 2.0.0\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.version).to.eql(\"2.0.0\");",
+                  "});",
+                  "",
+                  "pm.test(\"Has all endpoints listed\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.endpoints).to.have.property(\"corrupt\");",
+                  "    pm.expect(jsonData.endpoints).to.have.property(\"purify\");",
+                  "    pm.expect(jsonData.endpoints).to.have.property(\"health\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "health"]
+            },
+            "description": "Check API health status and get endpoint information"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Corrupt Text",
+      "item": [
+        {
+          "name": "Basic Corruption (Default)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has corrupted text\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"text\");",
+                  "    pm.expect(jsonData.text.length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.test(\"Has chaos level\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.chaosLevel).to.be.a(\"number\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"The stars are right\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Corrupt text with default settings (chaos level 50)"
+          },
+          "response": []
+        },
+        {
+          "name": "Minimal Corruption (Chaos 10)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Chaos level is 10\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.chaosLevel).to.eql(10);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"The stars are right\",\n  \"chaosLevel\": 10\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Light corruption with minimal marks"
+          },
+          "response": []
+        },
+        {
+          "name": "Maximum Corruption (Chaos 100)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"The stars are right\",\n  \"chaosLevel\": 100\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Extreme corruption with maximum marks (35 per character)"
+          },
+          "response": []
+        },
+        {
+          "name": "Preset: Whispers",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"The stars are right\",\n  \"preset\": \"whispers\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Use 'Whispers' preset (chaos 15)"
+          },
+          "response": []
+        },
+        {
+          "name": "Preset: Rising Madness",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"The stars are right\",\n  \"preset\": \"madness\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Use 'Rising Madness' preset (chaos 50)"
+          },
+          "response": []
+        },
+        {
+          "name": "Preset: Awakening",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"The stars are right\",\n  \"preset\": \"awakening\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Use 'Awakening' preset (chaos 75)"
+          },
+          "response": []
+        },
+        {
+          "name": "Preset: Cthulhu Rises",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"The stars are right\",\n  \"preset\": \"cthulhu\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Use 'Cthulhu Rises' preset (chaos 100)"
+          },
+          "response": []
+        },
+        {
+          "name": "All Parameters Combined",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn\",\n  \"chaosLevel\": 85,\n  \"corruptSpaces\": true,\n  \"enhanceCapitals\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Test all parameters: custom chaos, space corruption, and capital enhancement"
+          },
+          "response": []
+        },
+        {
+          "name": "Corrupt with Spaces (corruptSpaces: true)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"The stars are right\",\n  \"chaosLevel\": 60,\n  \"corruptSpaces\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Enable space character corruption"
+          },
+          "response": []
+        },
+        {
+          "name": "Enhanced Capitals (enhanceCapitals: true)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"The Stars Are Right\",\n  \"chaosLevel\": 50,\n  \"enhanceCapitals\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Give capital letters 50% more corruption marks"
+          },
+          "response": []
+        },
+        {
+          "name": "Long Text (Stress Test)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"In his house at R'lyeh dead Cthulhu waits dreaming. The most merciful thing in the world is the inability of the human mind to correlate all its contents. We live on a placid island of ignorance in the midst of black seas of infinity, and it was not meant that we should voyage far.\",\n  \"chaosLevel\": 65\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Test with longer text (H.P. Lovecraft quote)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Purify Text",
+      "item": [
+        {
+          "name": "Basic Purification",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has purified text\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"text\");",
+                  "});",
+                  "",
+                  "pm.test(\"Text is clean (no combining marks)\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    // Check that text doesn't contain common combining marks",
+                  "    pm.expect(jsonData.text).to.not.match(/[\\u0300-\\u036F\\u1AB0-\\u1AFF\\u1DC0-\\u1DFF\\u20D0-\\u20FF\\uFE20-\\uFE2F]/);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"T̸h̴e̶ ̴s̴t̸a̶r̸s̴ ̴a̶r̶e̸ ̴r̴i̸g̸h̴t̶\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/purify",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "purify"]
+            },
+            "description": "Remove all corruption marks from text"
+          },
+          "response": []
+        },
+        {
+          "name": "Purify Heavily Corrupted Text",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"T̷̢̨̡̨̧̢̛̛̯̖̘̻̪̼̮̰̦̟̘̫̝̲̫̱̪̖̺̗̺̗̼̖̰̖͚͍̦͖͓̮̫̱̮̣̤̫̣̼̝̖̱̤̟͎̠̪͙͕̰̱̪̮̟̖̦̤͖͕̝̟̲̮̬̰̮͖̖̘̣̖̫̦̻̰̟̩̱̰͇̦̖̩͓͓̥̘̪̫̫̳̩̺̖̤̼͓͍̫̭̦̫̼͓̳̦̤̱̫̱̰͇͍̦͕̘̮̘͓͚͕̖̪̺̖͕̮̰̰͖̮͔̮̘͍̮̣̱̳̪̝͖̦͇̪͙͚̯̜̦̦̖̦̖͖͓͓̝͙̱̮̦̦̳͎͔̜̯̬̮̖̫̺̙̮̖̜͍͇̞̜̪̜̰̜͍̮̩͚̱̱̪̲͎̘̞̱̖̤̰̺̮͍͍̱̩̱͕̮̖̦͙̖̪̫̦̫̪̱̟̖̖͍͙̜̪̼̘̝̰͙̣͇̮̝̠͇͖͓̮̪͇̬̦̫͙̰̪̬̰̺h̴̢̡̧̨̛̛̫̘̖͙̣̼͓͍̤̼̰̱̘̰̣̖͍̙̦̤̩̺͓̫̤̫̖̱̝̼͍̲͇̪̤̬̤̪̪̜̺̱̟̤͇̪̼̱͙̟̖͇̺̮̦̠͎̮̦̖͕̮̪̹̪̫̣̼̖̝̖̤̝̞̙͍̯̯̬̬̫͙͓͇̪̖̖͙̬̮͙̺̖̳̮̞̖͓̜͍̬͙̮̦̦͔͇͎̮̲̜̪̮͍̘̖̦̬̦̪͚̖̬̣͓͍͇̘̰̱̪̖̮͚̳͓̮̱̖̞̦̤͕̫̰̱̬͕̠̣̰̮̪̖̖̝͓͙̦͍̝̼̖̟̦̪̜̖̪̦̰̖̦̰̬̱͙̰̱̪̬̞̙̘̮̰̰͖̦̪̦͍̟̝̫̤̖͚̦̩̟̹͇e̶̡̢̨̧̛̛̩̼̤͍̖̬̼̰̞͎̦̤̪̮̦̫̠̼̮̣̟̖̮͓̘̘͍̝̠̰̩̱͙̤̖̟̫̰̖̤̪̮̜̱̖̱̝͙̳̰̖̰̱̮̬̹̬͍̦̦̞̖̣͓̯̦͓͚͍͇̘̮̖̫̪̦̪̮̦̖̼̞̝̖̺̞̫͙̰̱̱̼̖̦̫̹̰̫̦̖̰̼̮͙̤͇͍̬͍̪̬̫͇̖̪̦̖̤̟̬̫̰̦̹̰̬̦̮̫̖͇̱̦̱̳̱̝͙̖̯̮͎̰̪̰̩͇̪͙̺̣̦̮͕̦̮̬̦̪̹̟̪̖̱͎͍̞̫̞̖̖̖͙̖͙͍͕̰̼̦̦̖͓̞͙̪̣̹̖̹̖̫̱̦̖̮̺̮̘͍̮̦̦̦̟̦̤̜̞̯͙̮͍̮̺̖̜̞̮͓̖̱͍̟̰̮͎̦̪̦͙͚̪͍̪͚͓̫͙̩̦ ̴s̴t̸a̶r̸s̴ ̴a̶r̶e̸ ̴r̴i̸g̸h̴t̶\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/purify",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "purify"]
+            },
+            "description": "Test purification on extremely corrupted text"
+          },
+          "response": []
+        },
+        {
+          "name": "Purify with Emojis and Special Chars",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"🌊 T̸h̴e̶ ̴D̴e̶e̸p̴ ̴O̶n̶e̸s̴ ̴🐙 a̶w̶a̸i̴t̶ 🌟\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/purify",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "purify"]
+            },
+            "description": "Ensure emojis are preserved during purification"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Error Handling",
+      "item": [
+        {
+          "name": "Missing Text Parameter",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"Error message present\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"error\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chaosLevel\": 50\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Test error handling when 'text' parameter is missing"
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid Chaos Level (Too High)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Test\",\n  \"chaosLevel\": 150\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Test validation for chaos level > 100"
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid Chaos Level (Too Low)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Test\",\n  \"chaosLevel\": 0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Test validation for chaos level < 1"
+          },
+          "response": []
+        },
+        {
+          "name": "Text Too Long",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test(\"Error mentions text length\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.error.toLowerCase()).to.include(\"length\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"{{$randomLoremParagraphs}}{{$randomLoremParagraphs}}{{$randomLoremParagraphs}}{{$randomLoremParagraphs}}{{$randomLoremParagraphs}}{{$randomLoremParagraphs}}{{$randomLoremParagraphs}}{{$randomLoremParagraphs}}{{$randomLoremParagraphs}}{{$randomLoremParagraphs}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Test text length limit validation (max 10,000 characters)"
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid Preset Name",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Test\",\n  \"preset\": \"invalid_preset_name\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Test error handling for invalid preset names"
+          },
+          "response": []
+        },
+        {
+          "name": "Wrong HTTP Method (GET on corrupt)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 405\", function () {",
+                  "    pm.response.to.have.status(405);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Test that GET requests are rejected on POST-only endpoints"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "CORS & Headers",
+      "item": [
+        {
+          "name": "Preflight Request (OPTIONS)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Has CORS headers\", function () {",
+                  "    pm.response.to.have.header(\"Access-Control-Allow-Origin\");",
+                  "    pm.response.to.have.header(\"Access-Control-Allow-Methods\");",
+                  "    pm.response.to.have.header(\"Access-Control-Allow-Headers\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "OPTIONS",
+            "header": [
+              {
+                "key": "Origin",
+                "value": "https://example.com"
+              },
+              {
+                "key": "Access-Control-Request-Method",
+                "value": "POST"
+              },
+              {
+                "key": "Access-Control-Request-Headers",
+                "value": "Content-Type"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/corrupt",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "corrupt"]
+            },
+            "description": "Test CORS preflight request handling"
+          },
+          "response": []
+        },
+        {
+          "name": "Check Security Headers",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Has security headers\", function () {",
+                  "    pm.response.to.have.header(\"X-Frame-Options\");",
+                  "    pm.response.to.have.header(\"Strict-Transport-Security\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": ["{{baseUrl}}"],
+              "path": [""]
+            },
+            "description": "Verify security headers are applied from _headers file"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://eldritchify.vkrishna04.me",
+      "type": "string"
+    }
+  ]
+}

@@ -1,10 +1,14 @@
 # 🜏 ELDRITCHIFY 🜏
 
 > *"Tekeli-li! Tekeli-li!"*
+>
 > *"That is not dead which can eternal lie, and with strange aeons even death may die"*
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-8be9fd.svg)](LICENSE)
 [![Live Demo](https://img.shields.io/badge/Demo-Live-50fa7b.svg)](https://eldritchify.vkrishna04.me)
+[![Deployment Status](https://img.shields.io/badge/Cloudflare_Pages-Deployed-f38020?logo=cloudflare&logoColor=white)](https://eldritchify.vkrishna04.me)
+[![API Status](https://img.shields.io/badge/API-Operational-50fa7b?logo=cloudflare&logoColor=white)](https://eldritchify.vkrishna04.me/api/health)
+[![PWA](https://img.shields.io/badge/PWA-Installable-bd93f9?logo=pwa&logoColor=white)](https://eldritchify.vkrishna04.me)
 [![Nyarlathotep](https://img.shields.io/badge/Nyarlathotep-Crawling_Chaos-ff79c6.svg)]()
 [![Yog-Sothoth](https://img.shields.io/badge/Yog--Sothoth-The_Gate-8be9fd.svg)]()
 
@@ -132,6 +136,26 @@ curl -X POST https://eldritchify.vkrishna04.me/api/purify \
 # Health check
 curl https://eldritchify.vkrishna04.me/api/health
 ```
+
+### 📮 Postman Collection
+
+**Complete API testing collection available**: [`postman_collection.json`](postman_collection.json)
+
+[![Run in Postman](https://img.shields.io/badge/Postman-Import_Collection-FF6C37?logo=postman&logoColor=white)](postman_collection.json)
+
+**Includes**:
+- ✅ **Health Check** - API status verification
+- ✅ **Corruption Tests** - 10 scenarios (basic, presets, all parameters)
+- ✅ **Purification Tests** - 4 scenarios (basic, heavy corruption, emojis)
+- ✅ **Error Handling** - 6 validation tests
+- ✅ **CORS & Headers** - Security header verification
+- ✅ **Automated Tests** - 20+ assertions for CI/CD integration
+
+**How to use**:
+1. Download [`postman_collection.json`](postman_collection.json)
+2. Open Postman → Import → Select file
+3. Collection appears with all requests ready to run
+4. Click "Run Collection" to execute all tests
 
 See [API.md](docs/API.md) for human-readable documentation or [API_AGENTIC.md](docs/API_AGENTIC.md) for AI agent integration.
 
