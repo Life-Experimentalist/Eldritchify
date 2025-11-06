@@ -4,7 +4,7 @@
 > *"That is not dead which can eternal lie, and with strange aeons even death may die"*
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-8be9fd.svg)](LICENSE)
-[![Live Demo](https://img.shields.io/badge/Demo-Live-50fa7b.svg)](https://vkrishna04.github.io/Eldritchify)
+[![Live Demo](https://img.shields.io/badge/Demo-Live-50fa7b.svg)](https://eldritchify.vkrishna04.me)
 [![Nyarlathotep](https://img.shields.io/badge/Nyarlathotep-Crawling_Chaos-ff79c6.svg)]()
 [![Yog-Sothoth](https://img.shields.io/badge/Yog--Sothoth-The_Gate-8be9fd.svg)]()
 
@@ -34,7 +34,7 @@
 
 ## 🚀 Demo
 
-**[Try it live!](https://vkrishna04.github.io/Eldritchify)**
+**[Try it live!](https://eldritchify.vkrishna04.me)**
 
 Or run it locally:
 
@@ -87,6 +87,53 @@ Corrupted with Yog-Sothoth's Touch (Chaos 80): [standard heavy corruption]
 1. Place corrupted text into the "Corrupted Text" circle
 2. The Elder Signs automatically cleanse the marks (or invoke "Cleanse the Corruption!")
 3. Copy the restored text, sanity intact
+
+## 🛠️ Technical Details - *"The Forbidden Knowledge"*
+
+### Browser Support
+- ✅ Chrome/Edge (Favored by the Mi-Go)
+- ✅ Firefox (Blessed by Hastur)
+- ✅ Safari (Touched by the Dreamlands)
+- ✅ Opera (Known to the Deep Ones)
+- ⚠️ Internet Explorer (Lost to the Outer Void - not supported)
+
+### Performance
+
+## 📚 Documentation
+
+### For Developers & Users
+- **[README.md](README.md)** - This file, project overview and quick start
+- **[API Reference](docs/API.md)** - Complete API documentation with examples (cURL, Python, JavaScript)
+- **[Deployment Guide](docs/DEPLOYMENT.md)** - Step-by-step Cloudflare Pages deployment
+- **[Roadmap](docs/ROADMAP.md)** - Development roadmap and future features
+- **[Changelog](docs/CHANGELOG.md)** - Version history and release notes
+- **[Icons Guide](docs/ICONS.md)** - PWA icon creation instructions
+
+### For AI Agents & LLMs
+- **[Agentic API Documentation](docs/API_AGENTIC.md)** - Comprehensive API documentation designed for AI agents:
+  - 5 detailed Mermaid diagrams (architecture, request flow, algorithm, rate limits, CORS)
+  - Deep parameter explanations with validation rules
+  - Rate limit clarification (100k/day per Cloudflare account)
+  - Code examples for automation (Python, JavaScript, cURL)
+  - Agentic use cases (bots, testing, monitoring)
+
+### API Quick Reference
+```bash
+# Corrupt text
+curl -X POST https://eldritchify.vkrishna04.me/api/corrupt \
+  -H "Content-Type: application/json" \
+  -d '{"text":"He comes","chaosLevel":50}'
+
+# Purify text
+curl -X POST https://eldritchify.vkrishna04.me/api/purify \
+  -H "Content-Type: application/json" \
+  -d '{"text":"H̸e̶ ̴c̴o̵m̴e̶s̴"}'
+
+# Health check
+curl https://eldritchify.vkrishna04.me/api/health
+```
+
+See [API.md](docs/API.md) for human-readable documentation or [API_AGENTIC.md](docs/API_AGENTIC.md) for AI agent integration.
 
 ## 🛠️ Technical Details - *"The Forbidden Knowledge"*
 

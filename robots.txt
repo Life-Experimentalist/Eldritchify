@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /functions/
+Disallow: /assets/icons/
+
+Sitemap: https://eldritchify.vkrishna04.me/sitemap.xml

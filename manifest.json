@@ -1,0 +1,91 @@
+{
+    "name": "Eldritchify - Zalgo Text Generator",
+    "short_name": "Eldritchify",
+    "description": "Create corrupted Zalgo text with our cosmic horror-themed Unicode text generator",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#0a0e27",
+    "theme_color": "#0a0e27",
+    "orientation": "any",
+    "lang": "en-US",
+    "dir": "ltr",
+    "categories": [
+        "utilities",
+        "productivity"
+    ],
+    "icons": [
+        {
+            "src": "/assets/images/logo.png",
+            "sizes": "72x72",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/assets/images/logo.png",
+            "sizes": "96x96",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/assets/images/logo.png",
+            "sizes": "128x128",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/assets/images/logo.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/assets/images/logo.png",
+            "sizes": "152x152",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/assets/images/logo.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/assets/images/logo.png",
+            "sizes": "384x384",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/assets/images/logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/assets/images/background.png",
+            "sizes": "1366x768",
+            "type": "image/png",
+            "label": "Eldritchify main interface with Cthulhu background"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Corrupt Text",
+            "short_name": "Corrupt",
+            "description": "Open Eldritchify and start corrupting text",
+            "url": "/?action=corrupt",
+            "icons": [
+                {
+                    "src": "/assets/images/logo.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                }
+            ]
+        }
+    ],
+    "prefer_related_applications": false
+}

@@ -5,7 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark" />
     <meta name="darkreader-lock" />
-    <title>Eldritchify - Invoke the Ancient Chaos</title>
+
+    <!-- SEO Meta Tags -->
+    <title>Eldritchify - Zalgo Text Generator | Unicode Text Corruptor</title>
+    <meta
+      name="description"
+      content="Create corrupted Zalgo text with our cosmic horror-themed Unicode text generator. Transform normal text into eldritch glitch text with customizable chaos levels. Free online tool with API support."
+    />
+    <meta
+      name="keywords"
+      content="zalgo text generator, unicode text corruptor, glitch text maker, text corruption tool, eldritch text, lovecraftian text generator, unicode combining marks, corrupted text, zalgo creator, text distortion tool"
+    />
+    <meta name="author" content="VKrishna04" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href="https://eldritchify.vkrishna04.me/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://eldritchify.vkrishna04.me/"
+    />
+    <meta
+      property="og:title"
+      content="Eldritchify - Zalgo Text Generator | Unicode Text Corruptor"
+    />
+    <meta
+      property="og:description"
+      content="Invoke cosmic chaos! Create corrupted Zalgo text with our Lovecraftian-themed Unicode text generator. Free, powerful, and eldritch."
+    />
+    <meta
+      property="og:image"
+      content="https://eldritchify.vkrishna04.me/assets/images/background.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Eldritchify" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:url"
+      content="https://eldritchify.vkrishna04.me/"
+    />
+    <meta name="twitter:title" content="Eldritchify - Zalgo Text Generator" />
+    <meta
+      name="twitter:description"
+      content="Create corrupted Zalgo text with our cosmic horror-themed Unicode text generator. Free online tool with API support."
+    />
+    <meta
+      name="twitter:image"
+      content="https://eldritchify.vkrishna04.me/assets/images/background.png"
+    />
+    <meta name="twitter:creator" content="@VKrishna04" />
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#0a0e27" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Eldritchify" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/logo.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo.png" />
+    <link rel="shortcut icon" href="/assets/images/logo.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -131,6 +202,37 @@
         margin-bottom: 40px;
         z-index: 2;
         position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .site-logo {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        filter: drop-shadow(0 0 10px rgba(139, 233, 253, 0.5));
+        animation: logoFloat 4s ease-in-out infinite;
+      }
+
+      @keyframes logoFloat {
+        0%, 100% {
+          transform: translateY(0px);
+          filter: drop-shadow(0 0 10px rgba(139, 233, 253, 0.5));
+        }
+        50% {
+          transform: translateY(-10px);
+          filter: drop-shadow(0 0 20px rgba(139, 233, 253, 0.8));
+        }
       }
 
       .main-title {
@@ -139,7 +241,7 @@
         color: #8be9fd;
         text-shadow: 0 0 5px rgba(139, 233, 253, 0.5),
           0 0 10px rgba(80, 250, 123, 0.3), 2px 2px 8px rgba(0, 0, 0, 0.9);
-        margin-bottom: 10px;
+        margin: 0;
         animation: titleGlow 3s ease-in-out infinite;
         letter-spacing: 3px;
       }
@@ -188,6 +290,7 @@
           inset 0 1px 0 rgba(255, 255, 255, 0.1);
         position: relative;
         overflow: hidden;
+        opacity: 0.7;
         transition: all 0.3s ease;
         backdrop-filter: blur(15px);
       }
@@ -484,6 +587,57 @@
         }
       }
     </style>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Eldritchify",
+        "alternateName": "Zalgo Text Generator",
+        "url": "https://eldritchify.vkrishna04.me/",
+        "description": "A cosmic horror-themed Zalgo text generator that corrupts and purifies text using Unicode combining characters. Features adjustable chaos levels, preset styles, and API access.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript. Chrome, Firefox, Safari, or Edge recommended.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "VKrishna04",
+          "url": "https://vkrishna04.me"
+        },
+        "creator": {
+          "@type": "Organization",
+          "name": "Life-Experimentalists",
+          "url": "https://github.com/orgs/Life-Experimentalists/"
+        },
+        "featureList": [
+          "Adjustable chaos level (1-100)",
+          "Preset corruption styles (Whisper, Murmur, Chant, Scream)",
+          "Void spacing mode",
+          "Vertical and horizontal display modes",
+          "Space character corruption",
+          "Capital letter enhancement",
+          "One-click copy to clipboard",
+          "Real-time text purification",
+          "RESTful API access",
+          "PWA installable app",
+          "Offline functionality",
+          "Lovecraftian Cthulhu theme"
+        ],
+        "screenshot": "https://eldritchify.vkrishna04.me/assets/images/background.png",
+        "softwareVersion": "2.0.0",
+        "datePublished": "2025-11-06",
+        "dateModified": "2025-11-06",
+        "inLanguage": "en-US",
+        "isAccessibleForFree": true,
+        "license": "https://www.apache.org/licenses/LICENSE-2.0"
+      }
+    </script>
   </head>
   <body>
     <div class="eldritch-eye"></div>
@@ -491,7 +645,10 @@
     <div class="eldritch-eye"></div>
 
     <div class="header">
-      <h1 class="main-title">ELDRITCHIFY</h1>
+      <div class="logo-container">
+        <img src="assets/images/logo.png" alt="Eldritchify Logo" class="site-logo" />
+        <h1 class="main-title">ELDRITCHIFY</h1>
+      </div>
       <p class="subtitle">Summon the Ancient Corruption of Text</p>
     </div>
     <div class="container">
@@ -508,6 +665,61 @@ He comes.</textarea
             <span class="slider-value" id="crazinessValue">20</span>
           </label>
           <input type="range" id="craziness" min="1" max="100" value="20" />
+        </div>
+
+        <!-- Preset Corruption Styles -->
+        <div
+          style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap"
+        >
+          <button
+            type="button"
+            class="preset-btn"
+            data-chaos="10"
+            style="flex: 1; min-width: 120px; padding: 10px; font-size: 0.9em"
+          >
+            🌫️ Whisper (10)
+          </button>
+          <button
+            type="button"
+            class="preset-btn"
+            data-chaos="30"
+            style="flex: 1; min-width: 120px; padding: 10px; font-size: 0.9em"
+          >
+            🌀 Murmur (30)
+          </button>
+
+          <button
+            type="button"
+            class="preset-btn"
+            data-chaos="50"
+            style="flex: 1; min-width: 120px; padding: 10px; font-size: 0.9em"
+          >
+            🌪️ Roar (50)
+          </button>
+          <button
+            type="button"
+            class="preset-btn"
+            data-chaos="65"
+            style="flex: 1; min-width: 120px; padding: 10px; font-size: 0.9em"
+          >
+            🔮 Chant (65)
+          </button>
+          <button
+            type="button"
+            class="preset-btn"
+            data-chaos="80"
+            style="flex: 1; min-width: 120px; padding: 10px; font-size: 0.9em"
+          >
+            ⚡ Scream (80)
+          </button>
+          <button
+            type="button"
+            class="preset-btn"
+            data-chaos="100"
+            style="flex: 1; min-width: 120px; padding: 10px; font-size: 0.9em"
+          >
+            ⚡ Scream (100)
+          </button>
         </div>
 
         <div class="checkbox-container">
@@ -880,11 +1092,69 @@ He comes.</textarea
         generateZalgo();
       });
 
-      // Initialize vertical mode on load
+      // Initialize vertical mode on load and register PWA
       document.addEventListener("DOMContentLoaded", () => {
         const textareas = document.querySelectorAll("textarea");
         textareas.forEach((textarea) => {
           textarea.classList.add("vertical-mode");
+        });
+
+        // Page Load Ping - Analytics Tracking
+        // Configure your ping URL here
+        const PING_URL = "https://eldritchify.vkrishna04.me/api/health"; // Change this to your tracking endpoint
+
+        // Send ping on page load
+        function sendPageLoadPing() {
+          try {
+            // Using fetch with no-cors for simple ping (fire-and-forget)
+            fetch(PING_URL, {
+              method: 'GET',
+              mode: 'no-cors', // Allows request even if CORS not configured on target
+              cache: 'no-cache'
+            }).catch(() => {
+              // Silently fail - ping is best-effort
+            });
+
+            // Log locally (optional)
+            console.log('📊 Page load ping sent to:', PING_URL);
+          } catch (error) {
+            // Silently handle any errors
+          }
+        }
+
+        // Send ping immediately on load
+        sendPageLoadPing();
+
+        // Register Service Worker for PWA
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((registration) => {
+              console.log("✅ Service Worker registered:", registration.scope);
+            })
+            .catch((error) => {
+              console.log("❌ Service Worker registration failed:", error);
+            });
+        }
+
+        // Handle PWA install prompt
+        let deferredPrompt;
+        window.addEventListener("beforeinstallprompt", (e) => {
+          e.preventDefault();
+          deferredPrompt = e;
+          // Could show install button here if desired
+          console.log("💾 PWA install available");
+        });
+      });
+
+      // Preset button handlers
+      document.querySelectorAll(".preset-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const chaosLevel = parseInt(this.dataset.chaos);
+          const slider = document.getElementById("craziness");
+          slider.value = chaosLevel;
+          document.getElementById("crazinessValue").textContent = chaosLevel;
+          generateZalgo();
         });
       });
 

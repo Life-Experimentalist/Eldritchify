@@ -1,0 +1,9 @@
+# Redirects for Cloudflare Pages
+# Format: source destination [status]
+
+# Redirect old API paths if any
+/corrupt /api/corrupt 301
+/purify /api/purify 301
+
+# Ensure trailing slashes work
+/index /index.html 200

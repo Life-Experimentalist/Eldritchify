@@ -14,7 +14,7 @@ Eldritchify transforms normal text into **corrupted, glitchy Zalgo text** (and b
 ## 📥 Installation
 
 ### Option 1: Use Online (Easiest)
-Just visit: **[https://vkrishna04.github.io/Eldritchify](https://vkrishna04.github.io/Eldritchify)**
+Just visit: **[https://eldritchify.vkrishna04.me](https://eldritchify.vkrishna04.me)**
 
 ### Option 2: Download and Run Locally
 ```powershell
