@@ -1,0 +1,32 @@
+{
+    "name": "eldritchify",
+    "version": "1.0.0",
+    "description": "A Cthulhu-inspired Zalgo text generator for corrupting and purifying text",
+    "main": "index.html",
+    "scripts": {
+        "start": "powershell -Command \"Start-Process index.html\"",
+        "serve": "python -m http.server 8000"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Life-Experimentalists/Eldritchify.git"
+    },
+    "keywords": [
+        "zalgo",
+        "text-generator",
+        "unicode",
+        "cthulhu",
+        "lovecraft",
+        "horror",
+        "cosmic-horror",
+        "text-corruption",
+        "eldritch",
+        "web-tool"
+    ],
+    "author": "VKrishna04 <https://vkrishna04.me>",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/Life-Experimentalists/Eldritchify/issues"
+    },
+    "homepage": "https://vkrishna04.github.io/Eldritchify"
+}

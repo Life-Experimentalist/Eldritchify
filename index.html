@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="darkreader-lock" />
+    <title>Eldritchify - Invoke the Ancient Chaos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=UnifrakturMaguntia&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(
+            135deg,
+            rgba(10, 14, 39, 0.95) 0%,
+            rgba(26, 31, 58, 0.92) 50%,
+            rgba(13, 27, 42, 0.95) 100%
+          ),
+          url("assets/images/background.png");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-blend-mode: overlay;
+        color: #c5d8e8;
+        font-family: "Georgia", serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* Animated background tentacles - darkening overlay for readability */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(
+            circle at 20% 80%,
+            rgba(16, 42, 67, 0.6) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(26, 31, 58, 0.7) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 40% 40%,
+            rgba(13, 27, 42, 0.5) 0%,
+            transparent 50%
+          );
+        animation: tentacleMove 20s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      @keyframes tentacleMove {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.6;
+          transform: scale(1.1);
+        }
+      }
+
+      /* Floating particles */
+      body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(
+            2px 2px at 20% 30%,
+            rgba(139, 233, 253, 0.3),
+            transparent
+          ),
+          radial-gradient(
+            2px 2px at 60% 70%,
+            rgba(139, 233, 253, 0.2),
+            transparent
+          ),
+          radial-gradient(
+            1px 1px at 50% 50%,
+            rgba(139, 233, 253, 0.3),
+            transparent
+          ),
+          radial-gradient(
+            1px 1px at 80% 10%,
+            rgba(139, 233, 253, 0.2),
+            transparent
+          );
+        background-size: 200% 200%;
+        animation: particleFloat 15s linear infinite;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      @keyframes particleFloat {
+        0% {
+          background-position: 0% 0%;
+        }
+        100% {
+          background-position: 100% 100%;
+        }
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+        z-index: 2;
+        position: relative;
+      }
+
+      .main-title {
+        font-family: "Nosifer", cursive;
+        font-size: 4em;
+        color: #8be9fd;
+        text-shadow: 0 0 5px rgba(139, 233, 253, 0.5),
+          0 0 10px rgba(80, 250, 123, 0.3), 2px 2px 8px rgba(0, 0, 0, 0.9);
+        margin-bottom: 10px;
+        animation: titleGlow 3s ease-in-out infinite;
+        letter-spacing: 3px;
+      }
+
+      @keyframes titleGlow {
+        0%,
+        100% {
+          text-shadow: 0 0 5px rgba(139, 233, 253, 0.5),
+            0 0 10px rgba(80, 250, 123, 0.3), 2px 2px 8px rgba(0, 0, 0, 0.9);
+        }
+        50% {
+          text-shadow: 0 0 8px rgba(139, 233, 253, 0.6),
+            0 0 15px rgba(80, 250, 123, 0.4), 2px 2px 8px rgba(0, 0, 0, 0.9);
+        }
+      }
+
+      .subtitle {
+        font-family: "UnifrakturMaguntia", cursive;
+        font-size: 1.3em;
+        color: #bd93f9;
+        text-shadow: 0 0 10px #bd93f9, 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-style: italic;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        z-index: 2;
+        position: relative;
+      }
+
+      .tool-section {
+        background: linear-gradient(
+          135deg,
+          rgba(13, 27, 42, 0.4) 0%,
+          rgba(26, 31, 58, 0.45) 100%
+        );
+        padding: 35px;
+        border-radius: 16px;
+        border: 1px solid rgba(139, 233, 253, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+          0 0 20px rgba(139, 233, 253, 0.15),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(15px);
+      }
+
+      .tool-section::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, #8be9fd, #50fa7b, #bd93f9, #ff79c6);
+        border-radius: 12px;
+        opacity: 0;
+        z-index: -1;
+        transition: opacity 0.3s ease;
+      }
+
+      .tool-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 30px rgba(139, 233, 253, 0.4),
+          inset 0 0 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .tool-section:hover::before {
+        opacity: 0.3;
+      }
+
+      h2 {
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: #8be9fd;
+        font-family: "Creepster", cursive;
+        font-size: 2em;
+        text-align: center;
+        border-bottom: 3px solid #50fa7b;
+        padding-bottom: 15px;
+        text-shadow: 0 0 10px #8be9fd, 2px 2px 4px rgba(0, 0, 0, 0.7);
+        letter-spacing: 2px;
+      }
+
+      label {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #bd93f9;
+        text-shadow: 0 0 5px #bd93f9, 1px 1px 3px rgba(0, 0, 0, 0.7);
+        display: block;
+        margin-top: 15px;
+        margin-bottom: 8px;
+      }
+
+      textarea {
+        width: 100%;
+        height: 180px;
+        background: rgba(0, 0, 0, 0.5);
+        color: #50fa7b;
+        font-size: 1.4em;
+        font-family: "Courier New", "Consolas", "Monaco", monospace;
+        border: 1px solid rgba(139, 233, 253, 0.4);
+        border-radius: 8px;
+        padding: 15px;
+        resize: vertical;
+        transition: all 0.3s ease;
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4),
+          0 0 15px rgba(139, 233, 253, 0.2);
+        line-height: 2.8;
+        letter-spacing: 0.02em;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        white-space: pre-wrap;
+        text-shadow: 0 0 3px rgba(80, 250, 123, 0.3);
+        backdrop-filter: blur(8px);
+      }
+
+      /* Vertical stacking mode - better Unicode support */
+      textarea.vertical-mode {
+        font-family: "Arial", "Helvetica", sans-serif;
+        color: #f8f8f2;
+        letter-spacing: 0.05em;
+        word-break: break-word;
+        text-shadow: none;
+      }
+
+      textarea:focus {
+        outline: none;
+        border-color: #8be9fd;
+        box-shadow: 0 0 15px rgba(139, 233, 253, 0.5),
+          inset 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+
+      textarea::placeholder {
+        color: #6272a4;
+        font-style: italic;
+      }
+
+      button {
+        font-size: 1.1em;
+        font-weight: 600;
+        padding: 14px 28px;
+        margin-top: 15px;
+        border: 1px solid rgba(80, 250, 123, 0.3);
+        border-radius: 8px;
+        background: linear-gradient(
+          135deg,
+          rgba(80, 250, 123, 0.15) 0%,
+          rgba(139, 233, 253, 0.15) 100%
+        );
+        color: #8be9fd;
+        cursor: pointer;
+        width: 100%;
+        font-family: "Georgia", serif;
+        letter-spacing: 1px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(5px);
+      }
+
+      button:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(80, 250, 123, 0.25) 0%,
+          rgba(139, 233, 253, 0.25) 100%
+        );
+        border-color: rgba(80, 250, 123, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(80, 250, 123, 0.3);
+      }
+
+      button:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 10px rgba(80, 250, 123, 0.3);
+      }
+
+      .slider-container {
+        margin: 20px 0;
+      }
+
+      input[type="range"] {
+        width: 100%;
+        height: 8px;
+        background: linear-gradient(to right, #bd93f9, #ff79c6);
+        border-radius: 5px;
+        outline: none;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: #8be9fd;
+        border: 2px solid #50fa7b;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(139, 233, 253, 0.8);
+        transition: all 0.3s ease;
+      }
+
+      input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.2);
+        box-shadow: 0 0 15px rgba(139, 233, 253, 1);
+      }
+
+      input[type="range"]::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background: #8be9fd;
+        border: 2px solid #50fa7b;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(139, 233, 253, 0.8);
+        transition: all 0.3s ease;
+      }
+
+      input[type="range"]::-moz-range-thumb:hover {
+        transform: scale(1.2);
+        box-shadow: 0 0 15px rgba(139, 233, 253, 1);
+      }
+
+      .slider-value {
+        display: inline-block;
+        margin-left: 10px;
+        color: #ff79c6;
+        font-weight: bold;
+        font-size: 1.1em;
+        text-shadow: 0 0 5px #ff79c6;
+      }
+
+      .checkbox-container {
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        accent-color: #50fa7b;
+      }
+
+      .checkbox-container label {
+        margin: 0;
+        cursor: pointer;
+        font-weight: normal;
+        font-size: 1.05em;
+      }
+
+      .footer {
+        margin-top: 40px;
+        text-align: center;
+        color: #6272a4;
+        font-size: 0.9em;
+        z-index: 2;
+        position: relative;
+      }
+
+      .footer a {
+        color: #8be9fd;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .footer a:hover {
+        color: #50fa7b;
+        text-shadow: 0 0 10px #50fa7b;
+      }
+
+      @media (max-width: 800px) {
+        .container {
+          grid-template-columns: 1fr;
+        }
+
+        .main-title {
+          font-size: 2.5em;
+        }
+
+        .subtitle {
+          font-size: 1em;
+        }
+
+        h2 {
+          font-size: 1.5em;
+        }
+      }
+
+      /* Eldritch eye decoration */
+      .eldritch-eye {
+        position: fixed;
+        width: 80px;
+        height: 80px;
+        background: radial-gradient(
+          circle,
+          #ff79c6 0%,
+          #bd93f9 50%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        opacity: 0.3;
+        animation: eyeWatch 8s infinite;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .eldritch-eye:nth-child(1) {
+        top: 10%;
+        left: 5%;
+        animation-delay: 0s;
+      }
+      .eldritch-eye:nth-child(2) {
+        top: 80%;
+        right: 10%;
+        animation-delay: 2s;
+      }
+      .eldritch-eye:nth-child(3) {
+        bottom: 15%;
+        left: 15%;
+        animation-delay: 4s;
+      }
+
+      @keyframes eyeWatch {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.2;
+        }
+        50% {
+          transform: scale(1.3);
+          opacity: 0.4;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="eldritch-eye"></div>
+    <div class="eldritch-eye"></div>
+    <div class="eldritch-eye"></div>
+
+    <div class="header">
+      <h1 class="main-title">ELDRITCHIFY</h1>
+      <p class="subtitle">Summon the Ancient Corruption of Text</p>
+    </div>
+    <div class="container">
+      <div class="tool-section">
+        <h2>🜏 Corrupt the Text 🜏</h2>
+        <label for="inputTextZalgo">🗝️ Normal Text:</label>
+        <textarea id="inputTextZalgo" placeholder="Enter text to corrupt...">
+He comes.</textarea
+        >
+
+        <div class="slider-container">
+          <label for="craziness">
+            ⚡ Chaos Level:
+            <span class="slider-value" id="crazinessValue">20</span>
+          </label>
+          <input type="range" id="craziness" min="1" max="100" value="20" />
+        </div>
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="wideMode" name="wideMode" />
+          <label for="wideMode">🌀 Enable Void Spacing</label>
+        </div>
+
+        <div class="checkbox-container">
+          <input
+            type="checkbox"
+            id="verticalMode"
+            name="verticalMode"
+            checked
+          />
+          <label for="verticalMode"
+            >📊 Vertical Stacking Mode (Uncheck for Horizontal Block)</label
+          >
+        </div>
+
+        <div
+          class="slider-container"
+          id="spacingSliderContainer"
+          style="display: none"
+        >
+          <label for="spacingProb">
+            🔮 Spacing Intensity:
+            <span class="slider-value" id="spacingValue">40</span>%
+          </label>
+          <input type="range" id="spacingProb" min="0" max="100" value="40" />
+        </div>
+
+        <label for="outputTextZalgo">👁️ Corrupted Text:</label>
+        <textarea
+          id="outputTextZalgo"
+          readonly
+          placeholder="Your corrupted text will appear here..."
+        ></textarea>
+
+        <button id="copyZalgoBtn">📋 Copy to Clipboard</button>
+      </div>
+
+      <div class="tool-section">
+        <h2>✨ Purify the Text ✨</h2>
+        <label for="inputTextUnzalgo">👁️ Corrupted Text:</label>
+        <textarea
+          id="inputTextUnzalgo"
+          placeholder="Paste corrupted text here..."
+        ></textarea>
+
+        <button id="cleanButton">🧹 Cleanse the Corruption!</button>
+
+        <label for="outputTextUnzalgo">🗝️ Purified Text:</label>
+        <textarea
+          id="outputTextUnzalgo"
+          readonly
+          placeholder="Your cleansed text will appear here..."
+        ></textarea>
+
+        <button id="copyCleanBtn">📋 Copy to Clipboard</button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn</p>
+      <p style="margin-top: 10px">
+        Created with eldritch power by
+        <a href="https://vkrishna04.me" target="_blank">VKrishna04</a>
+      </p>
+    </div>
+
+    <script>
+      // --- Zalgo Logic ---
+      const CHARS_ABOVE = [
+        "\u0300",
+        "\u0301",
+        "\u0302",
+        "\u0303",
+        "\u0304",
+        "\u0305",
+        "\u0306",
+        "\u0307",
+        "\u0308",
+        "\u0309",
+        "\u030A",
+        "\u030B",
+        "\u030C",
+        "\u030D",
+        "\u030E",
+        "\u030F",
+        "\u0310",
+        "\u0311",
+        "\u0312",
+        "\u0313",
+        "\u0314",
+        "\u033D",
+        "\u033E",
+        "\u033F",
+        "\u0340",
+        "\u0341",
+        "\u0342",
+        "\u0343",
+        "\u0344",
+        "\u034A",
+        "\u034B",
+        "\u034C",
+        "\u0350",
+        "\u0351",
+        "\u0352",
+        "\u0357",
+        "\u035B",
+        "\u035C",
+        "\u035D",
+        "\u035E",
+        "\u035F",
+        "\u0360",
+        "\u0361",
+        "\u0362",
+        "\u0363",
+        "\u0364",
+        "\u0365",
+        "\u0366",
+        "\u0367",
+        "\u0368",
+        "\u0369",
+        "\u036A",
+        "\u036B",
+        "\u036C",
+        "\u036D",
+        "\u036E",
+        "\u036F",
+      ];
+
+      const CHARS_BELOW = [
+        "\u0316",
+        "\u0317",
+        "\u0318",
+        "\u0319",
+        "\u031A",
+        "\u031B",
+        "\u031C",
+        "\u031D",
+        "\u031E",
+        "\u031F",
+        "\u0320",
+        "\u0321",
+        "\u0322",
+        "\u0323",
+        "\u0324",
+        "\u0325",
+        "\u0326",
+        "\u0327",
+        "\u0328",
+        "\u0329",
+        "\u032A",
+        "\u032B",
+        "\u032C",
+        "\u032D",
+        "\u032E",
+        "\u032F",
+        "\u0330",
+        "\u0331",
+        "\u0332",
+        "\u0333",
+        "\u0339",
+        "\u033A",
+        "\u033B",
+        "\u033C",
+        "\u0345",
+        "\u0347",
+        "\u0348",
+        "\u0349",
+        "\u034D",
+        "\u034E",
+        "\u0353",
+        "\u0354",
+        "\u0355",
+        "\u0356",
+        "\u0359",
+        "\u035A",
+      ];
+
+      const CHARS_MIDDLE = [
+        "\u0334",
+        "\u0335",
+        "\u0336",
+        "\u0337",
+        "\u0338",
+        "\u0346",
+        "\u034F",
+        "\u0358",
+      ];
+
+      function getRandomChar(charList) {
+        return charList[Math.floor(Math.random() * charList.length)];
+      }
+
+      function updateSliderValues() {
+        const craziness = document.getElementById("craziness").value;
+        const spacingProb = document.getElementById("spacingProb").value;
+        document.getElementById("crazinessValue").textContent = craziness;
+        document.getElementById("spacingValue").textContent = spacingProb;
+      }
+
+      function generateZalgo() {
+        updateSliderValues();
+
+        let inputText = document.getElementById("inputTextZalgo").value;
+        const craziness = parseInt(document.getElementById("craziness").value);
+        const wideMode = document.getElementById("wideMode").checked;
+        const spacingProb =
+          parseInt(document.getElementById("spacingProb").value) / 100;
+
+        let outputText = "";
+
+        // Empty input check
+        if (!inputText) {
+          document.getElementById("outputTextZalgo").value = "";
+          document.getElementById("inputTextUnzalgo").value = "";
+          return;
+        }
+
+        // Randomized Wide Spacing
+        if (wideMode) {
+          let spacedText = "";
+          for (const char of inputText) {
+            spacedText += char;
+            if (Math.random() < spacingProb) {
+              spacedText += " ";
+            }
+          }
+          inputText = spacedText;
+        }
+
+        // Apply Zalgo corruption - EXTREME ALGORITHM for heavy cloaking
+        for (const char of inputText) {
+          outputText += char;
+
+          // Check if character is a space (will still get corruption for block effect)
+          const isSpace = char === " ";
+
+          // Check if character is uppercase (needs MORE marks to conceal)
+          const isUpperCase =
+            char === char.toUpperCase() && char !== char.toLowerCase();
+          const upperCaseMultiplier = isUpperCase ? 1.5 : 1.0; // 50% more marks for capitals
+          const spaceMultiplier = isSpace ? 0.7 : 1.0; // Spaces get 70% marks to fill gaps
+
+          // Skip only newlines and tabs, but NOT spaces
+          if (char === "\n" || char === "\r" || char === "\t") continue;
+
+          // Heavily increased mark distribution for extreme corruption
+          const intensity = craziness / 100; // 0.0 to 1.0
+          const baseMinMarks = Math.floor(intensity * 8); // 0-8 base marks
+          const baseMaxMarks = Math.ceil(intensity * 35); // up to 35 marks at max chaos
+
+          // Apply uppercase and space multipliers
+          const minMarks = Math.floor(
+            baseMinMarks * upperCaseMultiplier * spaceMultiplier
+          );
+          const maxMarks = Math.ceil(
+            baseMaxMarks * upperCaseMultiplier * spaceMultiplier
+          );
+
+          const numMarks =
+            minMarks + Math.floor(Math.random() * (maxMarks - minMarks + 1));
+
+          for (let i = 0; i < numMarks; i++) {
+            const position = Math.random();
+
+            // Balanced distribution for heavy stacking
+            if (position < 0.45) {
+              // 45% chance for marks above
+              outputText += getRandomChar(CHARS_ABOVE);
+            } else if (position < 0.85) {
+              // 40% chance for marks below
+              outputText += getRandomChar(CHARS_BELOW);
+            } else {
+              // 15% chance for marks through middle
+              outputText += getRandomChar(CHARS_MIDDLE);
+            }
+          }
+        }
+
+        document.getElementById("outputTextZalgo").value = outputText;
+        document.getElementById("inputTextUnzalgo").value = outputText;
+      }
+
+      function cleanZalgo() {
+        const corruptedText = document.getElementById("inputTextUnzalgo").value;
+
+        if (!corruptedText) {
+          document.getElementById("outputTextUnzalgo").value = "";
+          return;
+        }
+
+        // Remove all Unicode combining diacritical marks
+        const cleanedText = corruptedText.replace(/[\u0300-\u036f]/g, "");
+        document.getElementById("outputTextUnzalgo").value = cleanedText;
+      }
+
+      // Copy to clipboard functions
+      async function copyToClipboard(text, buttonId) {
+        try {
+          await navigator.clipboard.writeText(text);
+          const button = document.getElementById(buttonId);
+          const originalText = button.textContent;
+          button.textContent = "✅ Copied!";
+          button.style.background =
+            "linear-gradient(135deg, #50fa7b 0%, #8be9fd 100%)";
+
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background = "";
+          }, 2000);
+        } catch (err) {
+          console.error("Failed to copy:", err);
+          alert("Failed to copy to clipboard. Please copy manually.");
+        }
+      }
+
+      // Event Listeners
+      document
+        .getElementById("inputTextZalgo")
+        .addEventListener("input", generateZalgo);
+      document
+        .getElementById("craziness")
+        .addEventListener("input", generateZalgo);
+      document
+        .getElementById("spacingProb")
+        .addEventListener("input", generateZalgo);
+      document
+        .getElementById("cleanButton")
+        .addEventListener("click", cleanZalgo);
+
+      document.getElementById("copyZalgoBtn").addEventListener("click", () => {
+        const text = document.getElementById("outputTextZalgo").value;
+        if (text) copyToClipboard(text, "copyZalgoBtn");
+      });
+
+      document.getElementById("copyCleanBtn").addEventListener("click", () => {
+        const text = document.getElementById("outputTextUnzalgo").value;
+        if (text) copyToClipboard(text, "copyCleanBtn");
+      });
+
+      // Show/hide spacing slider
+      document.getElementById("wideMode").addEventListener("change", () => {
+        const sliderContainer = document.getElementById(
+          "spacingSliderContainer"
+        );
+        if (document.getElementById("wideMode").checked) {
+          sliderContainer.style.display = "block";
+        } else {
+          sliderContainer.style.display = "none";
+        }
+        generateZalgo();
+      });
+
+      // Toggle vertical/horizontal mode
+      document.getElementById("verticalMode").addEventListener("change", () => {
+        const textareas = document.querySelectorAll("textarea");
+        const isVertical = document.getElementById("verticalMode").checked;
+
+        textareas.forEach((textarea) => {
+          if (isVertical) {
+            textarea.classList.add("vertical-mode");
+          } else {
+            textarea.classList.remove("vertical-mode");
+          }
+        });
+
+        generateZalgo();
+      });
+
+      // Initialize vertical mode on load
+      document.addEventListener("DOMContentLoaded", () => {
+        const textareas = document.querySelectorAll("textarea");
+        textareas.forEach((textarea) => {
+          textarea.classList.add("vertical-mode");
+        });
+      });
+
+      // Also clean when typing in the unzalgo textarea
+      document
+        .getElementById("inputTextUnzalgo")
+        .addEventListener("input", () => {
+          // Auto-clean on input for better UX
+          cleanZalgo();
+        });
+
+      // Initial generation on page load
+      generateZalgo();
+    </script>
+  </body>
+</html>
