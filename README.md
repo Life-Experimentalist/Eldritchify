@@ -1,7 +1,7 @@
 # 🜏 ELDRITCHIFY 🜏
 
 > *"Tekeli-li! Tekeli-li!"*
->
+> *"T͈ͮ͜e͉͉̐̋͞k̡̹ͤȅ̶͖̖̮ͫ͑l̗͗͋i͌̎-̶̛̻͎l̸̜̺̘̂̇̿̎iͬ͒̾!̪͆ ̵̢̦̓ͯ̑͞T̷̴̡̐ͪe͓̙̓̚k̙ͫe̸̻̪ͨl̹̤̀́ͩ͜i̘ͅ͏-̫̜̊̀ͅļ̤͎̗͂̌͠i̬͉!̴̶͕̊̀̓͒͘͞"
 > *"That is not dead which can eternal lie, and with strange aeons even death may die"*
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-8be9fd.svg)](LICENSE)
