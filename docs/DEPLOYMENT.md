@@ -72,12 +72,21 @@ git push -u origin main
    - Click "Begin setup"
 
 4. **Configure Build Settings**
+
+   **IMPORTANT - This is a static site, not a Workers project:**
+
    ```
    Project Name: eldritchify
    Production branch: main
-   Build command: (leave empty - static site)
-   Build output directory: / (root)
+   Framework preset: None
+   Build command: (leave EMPTY or type "echo 'Static site'")
+   Build output directory: / (root directory)
    ```
+
+   **Common Issue**: If you see "Missing entry-point to Worker script" error:
+   - The build command should be **completely empty** or just `echo 'Static site'`
+   - Do NOT use `npx wrangler deploy` (that's for Workers only)
+   - This is a static HTML/CSS/JS site with Functions in `/functions/` directory
 
 5. **Deploy**
    - Click "Save and Deploy"
@@ -347,6 +356,82 @@ After deployment, your app will be available at:
 - **R2 Storage**: $0.015/GB (if adding file uploads)
 
 **For Eldritchify's use case**: Free tier is more than sufficient.
+
+---
+
+## 🆘 Troubleshooting
+
+### Error: "Missing entry-point to Worker script"
+
+**Symptom**: Build fails with:
+```
+✘ [ERROR] Missing entry-point to Worker script or to assets directory
+```
+
+**Cause**: Cloudflare Pages is trying to run `npx wrangler deploy` as the build command.
+
+**Solution**:
+1. Go to Cloudflare Dashboard → Workers & Pages → Your project
+2. Click "Settings" → "Builds & deployments"
+3. Under "Build command", **leave it completely EMPTY** or set to `echo 'Static site'`
+4. Under "Build output directory", set to `/` (root)
+5. Click "Save"
+6. Go to "Deployments" tab → Click "Retry deployment"
+
+**Why this happens**:
+- Eldritchify is a **static HTML site**, not a Workers project
+- The `/functions/` directory contains Workers that deploy automatically
+- No build step is needed - files are served as-is
+- Wrangler is for Workers-only projects, not Pages with static sites
+
+### Error: "404 Not Found" on API endpoints
+
+**Symptom**: `/api/corrupt` returns 404
+
+**Solution**:
+1. Check `/functions/` directory exists in repository
+2. Verify files are named `functions/api/corrupt.js` (not `.ts`)
+3. Wait 2-3 minutes after deployment for Functions to propagate
+4. Check deployment logs for Function binding errors
+
+### Error: PWA not installing
+
+**Symptom**: No install prompt appears
+
+**Solution**:
+1. Verify `manifest.json` is accessible at root
+2. Check service worker registered in DevTools → Application
+3. Ensure HTTPS is enabled (required for PWA)
+4. Try incognito/private browsing mode
+5. On iOS: Use Safari (Chrome doesn't support PWA install)
+
+### Error: CORS issues with API
+
+**Symptom**: API calls fail with CORS error
+
+**Solution**:
+1. Verify `_headers` file is in root directory
+2. Check headers include `Access-Control-Allow-Origin: *`
+3. Wait 5 minutes for header changes to propagate
+4. Clear browser cache and retry
+
+### Error: Images not loading
+
+**Symptom**: Logo or background not visible
+
+**Solution**:
+1. Check file paths use **absolute paths** (`/assets/images/logo.png`)
+2. Verify files exist in `assets/images/` directory
+3. Check capitalization matches exactly (case-sensitive)
+4. Look for 404 errors in browser DevTools → Network tab
+
+### Performance: Slow first load
+
+**Solution**:
+1. Enable Cloudflare "Auto Minify" (Settings → Speed → Optimization)
+2. Enable "Rocket Loader" for JavaScript
+3. Consider compressing images (logo.png and background.png)
+4. Service worker will cache everything after first visit
 
 ---
 
