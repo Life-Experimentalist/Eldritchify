@@ -23,10 +23,7 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content="https://eldritchify.vkrishna04.me/"
-    />
+    <meta property="og:url" content="https://eldritchify.vkrishna04.me/" />
     <meta
       property="og:title"
       content="Eldritchify - Zalgo Text Generator | Unicode Text Corruptor"
@@ -46,10 +43,7 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:url"
-      content="https://eldritchify.vkrishna04.me/"
-    />
+    <meta name="twitter:url" content="https://eldritchify.vkrishna04.me/" />
     <meta name="twitter:title" content="Eldritchify - Zalgo Text Generator" />
     <meta
       name="twitter:description"
@@ -74,8 +68,17 @@
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/favicon-96x96.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/assets/images/favicon-96x96.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/images/apple-touch-icon.png"
+    />
     <link rel="shortcut icon" href="/assets/images/favicon.ico" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -226,7 +229,8 @@
       }
 
       @keyframes logoFloat {
-        0%, 100% {
+        0%,
+        100% {
           transform: translateY(0px);
           filter: drop-shadow(0 0 10px rgba(139, 233, 253, 0.5));
         }
@@ -385,6 +389,40 @@
       textarea::placeholder {
         color: #6272a4;
         font-style: italic;
+      }
+
+      /* Cthulhu-style footer notice */
+      .cthulhu-footer {
+        width: 100%;
+        max-width: 900px;
+        margin: 24px auto 8px auto;
+        padding: 10px 16px;
+        text-align: center;
+        color: rgba(181, 223, 255, 0.9);
+        background: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.18),
+          rgba(2, 6, 12, 0.25)
+        );
+        border: 1px solid rgba(139, 233, 253, 0.06);
+        border-radius: 8px;
+        font-family: "Creepster", serif;
+        font-size: 0.95rem;
+        box-shadow: 0 6px 18px rgba(2, 6, 12, 0.6);
+        backdrop-filter: blur(4px) saturate(1.05);
+      }
+
+      .cthulhu-footer a {
+        color: #8be9fd;
+        text-decoration: underline dotted;
+      }
+
+      .cthulhu-footer small {
+        display: block;
+        margin-top: 6px;
+        color: rgba(181, 223, 255, 0.7);
+        font-size: 0.8rem;
+        opacity: 0.95;
       }
 
       button {
@@ -647,7 +685,11 @@
 
     <div class="header">
       <div class="logo-container">
-        <img src="assets/images/logo.png" alt="Eldritchify Logo" class="site-logo" />
+        <img
+          src="assets/images/logo.png"
+          alt="Eldritchify Logo"
+          class="site-logo"
+        />
         <h1 class="main-title">ELDRITCHIFY</h1>
       </div>
       <p class="subtitle">Summon the Ancient Corruption of Text</p>
@@ -1104,20 +1146,30 @@ He comes.</textarea
         // Configure your ping URL here
         const PING_URL = "https://eldritchify.vkrishna04.me/api/health"; // Change this to your tracking endpoint
 
+        // Additional telemetry integration pointer (CFlair-Counter Integration Guide)
+        // We append this as an encoded query param named `integration` so downstream
+        // telemetry can optionally record which integration guide was referenced.
+        const INTEGRATION_DOC = encodeURIComponent(
+          "https://raw.githubusercontent.com/Life-Experimentalist/CFlair-Counter/main/INTEGRATION.md"
+        );
+
         // Send ping on page load
         function sendPageLoadPing() {
           try {
+            // Build URL with integration pointer
+            const url = `${PING_URL}?integration=${INTEGRATION_DOC}`;
+
             // Using fetch with no-cors for simple ping (fire-and-forget)
-            fetch(PING_URL, {
-              method: 'GET',
-              mode: 'no-cors', // Allows request even if CORS not configured on target
-              cache: 'no-cache'
+            fetch(url, {
+              method: "GET",
+              mode: "no-cors", // Allows request even if CORS not configured on target
+              cache: "no-cache",
             }).catch(() => {
               // Silently fail - ping is best-effort
             });
 
             // Log locally (optional)
-            console.log('📊 Page load ping sent to:', PING_URL);
+            console.log("📊 Page load ping sent to:", url);
           } catch (error) {
             // Silently handle any errors
           }
@@ -1170,5 +1222,18 @@ He comes.</textarea
       // Initial generation on page load
       generateZalgo();
     </script>
+
+    <!-- Cthulhu-style integration notice -->
+    <div class="cthulhu-footer" role="note" aria-label="Integration notice">
+      <div>
+        <strong>Integration:</strong>
+        <a href="https://github.com/Life-Experimentalist/CFlair-Counter/blob/main/INTEGRATION.md" target="_blank" rel="noopener">CFlair-Counter Integration Guide</a>
+      </div>
+      <small>
+        Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn —
+        When you stare into the Abyss, the Abyss counts.
+      </small>
+    </div>
+
   </body>
 </html>

@@ -1,7 +1,11 @@
 # 🜏 ELDRITCHIFY 🜏
 
 > *"Tekeli-li! Tekeli-li!"*
-> *"T͈ͮ͜e͉͉̐̋͞k̡̹ͤȅ̶͖̖̮ͫ͑l̗͗͋i͌̎-̶̛̻͎l̸̜̺̘̂̇̿̎iͬ͒̾!̪͆ ̵̢̦̓ͯ̑͞T̷̴̡̐ͪe͓̙̓̚k̙ͫe̸̻̪ͨl̹̤̀́ͩ͜i̘ͅ͏-̫̜̊̀ͅļ̤͎̗͂̌͠i̬͉!̴̶͕̊̀̓͒͘͞"
+>
+>
+> "T͈ͮ͜e͉͉̐̋͞k̡̹ͤȅ̶͖̖̮ͫ͑l̗͗͋i͌̎-̶̛̻͎l̸̜̺̘̂̇̿̎iͬ͒̾!̪͆ ̵̢̦̓ͯ̑͞T̷̴̡̐ͪe͓̙̓̚k̙ͫe̸̻̪ͨl̹̤̀́ͩ͜i̘ͅ͏-̫̜̊̀ͅļ̤͎̗͂̌͠i̬͉!̴̶͕̊̀̓͒͘͞"
+>
+>
 > *"That is not dead which can eternal lie, and with strange aeons even death may die"*
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-8be9fd.svg)](LICENSE)
@@ -9,12 +13,16 @@
 [![Deployment Status](https://img.shields.io/badge/Cloudflare_Pages-Deployed-f38020?logo=cloudflare&logoColor=white)](https://eldritchify.vkrishna04.me)
 [![API Status](https://img.shields.io/badge/API-Operational-50fa7b?logo=cloudflare&logoColor=white)](https://eldritchify.vkrishna04.me/api/health)
 [![PWA](https://img.shields.io/badge/PWA-Installable-bd93f9?logo=pwa&logoColor=white)](https://eldritchify.vkrishna04.me)
-[![Nyarlathotep](https://img.shields.io/badge/Nyarlathotep-Crawling_Chaos-ff79c6.svg)]()
-[![Yog-Sothoth](https://img.shields.io/badge/Yog--Sothoth-The_Gate-8be9fd.svg)]()
+[![](https://counter.vkrishna04.me/api/views/Eldritchify/badge?color=purple&label=visit%20counter)](https://github.com/Life-Experimentalist/CFlair-Counter)
 
-**Eldritchify** is a cosmic horror-themed Zalgo text generator that corrupts and purifies text using Unicode combining characters. Invoke the whispers of Azathoth, channel the chaos of Nyarlathotep, or cleanse your text from the madness with this Lovecraftian-inspired web tool!
+
+
+
+> **Eldritchify** is a cosmic horror-themed Zalgo text generator that corrupts and purifies text using Unicode combining characters. Invoke the whispers of Azathoth, channel the chaos of Nyarlathotep, or cleanse your text from the madness with this Lovecraftian-inspired web tool!
 
 ![Eldritchify Banner](https://img.shields.io/badge/Shub--Niggurath-Blessed-bd93f9?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyUzYuNDggMjIgMTIgMjJTMjIgMTcuNTIgMjIgMTJTMTcuNTIgMiAxMiAyWk0xMiAyMEM3LjU5IDIwIDQgMTYuNDEgNCAxMlM3LjU5IDQgMTIgNFMyMCA3LjU5IDIwIDEyUzE2LjQxIDIwIDEyIDIwWiIgZmlsbD0iIzhmYjlmZCIvPgo8L3N2Zz4=)
+[![Nyarlathotep](https://img.shields.io/badge/Nyarlathotep-Crawling_Chaos-ff79c6.svg)]()
+[![Yog-Sothoth](https://img.shields.io/badge/Yog--Sothoth-The_Gate-8be9fd.svg)]()
 
 ## ✨ Features
 
